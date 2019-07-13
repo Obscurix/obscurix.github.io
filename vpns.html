@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="styles.css">
+    <title>Obscurix - VPNs</title>
+  </head>
+  <body>
+    <h1>VPNs</h1>
+
+    <p>
+      VPNs (Virtual Private Networks) are not supported in Obscurix whether it's Tor over VPN, VPN over Tor or just VPNs themselves. This is because VPNs will likely not help. If anything, they will just worsen anonymity. VPNs will also mess with the Tor and iptables setup which may cause unexpected and extremely harmful outcomes. <br>
+      <br>
+      Reasons why VPNs are not helpful are below.
+    </p>
+
+    <h2>VPNs are not anonymous</h2>
+
+    <p>
+      VPNs are not an anonymity tool and should not be used as such. The VPN provider knows exactly who you are and what you're doing. They can find out who you are from your IP address, payment information, emails, usernames, browsing history etc. <br>
+      <br>
+      The VPN provider is in full position to log all of your traffic or launch man in the middle attacks.
+    </p>
+
+    <h2>Traffic Analysis Attacks</h2>
+
+    <p>
+      VPNs are extremely vulnerable to traffic analysis attacks. An adversary can see your connection to the VPN server, connections coming out from the VPN server, compare them and if they look the same, they can take a good guess that it is you. <br>
+      <br>
+      Tor is also vulnerable to traffic analysis attacks but not to the same extent due to the three hops involved in a regular circuit.
+    </p>
+
+    <h2>Network Layout</h2>
+
+    <p>
+      When you use a VPN with Tor, you will stand out from other Tor users to a network level adversary's view. <br>
+      <br>
+      For example, if you connect to Tor through a VPN (Tor over VPN), a network level adversary will see You -> VPN -> Tor while for most other Tor users, they will see You -> Tor. This makes you stand out more and reduces your anonymity set.
+    </p>
+
+    <h2>VPNs don't reliably hide Tor usage</h2>
+
+    <p>
+      Some people use VPNs to attempt to hide Tor usage but VPNs cannot reliably do that. VPNs will only hide that you are connecting to a Tor IP address but they do nothing to modify the traffic. An adversary can still monitor the packet size, packet timings etc. to determine Tor usage. Tor usage can also be found via traffic analysis (see above). <br>
+      <br>
+      If you need to hide Tor usage, use a Tor bridge.
+    </p>
+
+    <h2>Hiding your IP address if Tor is broken</h2>
+
+    <p>
+      Some people use VPNs as an "extra layer of protection" incase Tor is somehow broken but if an adversary is powerful enough to break Tor, they will also be powerful enough to break VPNs. <br>
+    </p>
+
+    <h2>The Tor Wiki</h2>
+
+    <p>
+      There is a page on the <a href="https://trac.torproject.org/projects/tor/wiki/doc/TorPlusVPN">Tor wiki</a> which states that VPNs may improve anonymity. This has lead many people to believe that Tor developers are recommending to use VPNs with Tor. However, this is not the case. The Tor wiki is community maintained as explained <a href="https://trac.torproject.org/projects/tor/wiki">here</a>.
+    </p>
+
+    <div class="code">
+      Most of the content here is written by <b>volunteers</b> from around the world.
+    </div>
+
+    <p>
+      Most of that page is also written by <a href="https://trac.torproject.org/projects/tor/wiki/doc/TorPlusVPN?action=history">one person</a> as discussed on the <a href="https://lists.torproject.org/pipermail/tor-talk/2012-April/024082.html">Tor mailing list</a>.
+    </p>
+
+    <h2>Related Links:</h2>
+
+    <a href="https://matt.traudt.xyz/posts/vpn-tor-not-mRikAa4h.html">VPN + Tor: Not Necessarily a Net Gain</a> <br>
+    <a href="https://tails.boum.org/blueprint/vpn_support/">Tails - vpn support</a> <br>
+    <a href="https://2019.www.torproject.org/docs/faq.html.en#IsTorLikeAVPN">Tor Project FAQ - Is Tor Like A VPN?</a> <br>
+    <a href="https://lists.torproject.org/pipermail/tor-talk/2016-July/041757.html">[tor-talk] using a VPN, proxy or ssh can make you actually less anonymous</a>
+  </body>
+</html>

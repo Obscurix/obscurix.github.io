@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="styles.css">
+    <title>Obscurix - Potential Identifiers</title>
+  </head>
+  <body>
+    <h1>Potential Identifiers</h1>
+
+    <p>
+      Obscurix does its best to reduce the amount of potential identifiers to a minimum. <br>
+      <br>
+      The hostname is set to "host". This is a very generic hostname and is also used by Whonix. <br>
+      <br>
+      The default username is "user". This is very generic and leaks no information about the user. This is also used by Whonix. <br>
+      <br>
+      The machine-id is set to the same ID that Whonix and Tails uses. <br>
+      <br>
+      Obscurix spoofs MAC addresses at boot. More information can be found <a href="mac-spoofing.html">here</a>. <br>
+      <br>
+      IP leaks are impossible without root privileges. If you want complete IP leak protection that makes it extremely hard for malware to discover your real IP address even with a root exploit then use Whonix.
+    </p>
+
+    <h2>Tor/Obscurix Usage</h2>
+
+    <p>
+      Obscurix does not attempt to mask any Tor usage or the fact that you are using Obscurix. Currently Tor bridges are not supported. If an attacker has access to a Obscurix machine it can determine that it is infact Obscurix. This can be done by looking at the configuration or other details although there is nothing that outright says it is Obscurix.
+    </p>
+
+    <h2>Browser Fingerprinting</h2>
+
+    <p>
+      Obscurix comes with the Tor Browser which attempts to make all Tor Browser users look the same. It defeats many browser fingerprinting and tracking attempts. Obscurix does not modify any Tor Browser settings so to a website, you will look the same as any other Tor Browser user. <br>
+      <br>
+      If you change any settings yourself or add any extensions, you will make yourself stand out from all other Tor Browser users and may be de-anonymized. It is recommended to leave the Tor Browser settings as it is. The only settings that should be changed are the security settings. The "Safest" security level is recommended for high anonymity and security.
+    </p>
+
+    <h2>Hardware Identifiers</h2>
+
+    <p>
+      It is not currently possible to hide hardware information from the system unless using a virtual machine which Obscurix is not meant to be used in.
+    </p>
+  </body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="styles.css">
+    <title>Obscurix - Downloading and Installing</title>
+  </head>
+  <body>
+    <h1>Downloading and Installing</h1>
+
+    <p>
+      To install Obscurix, download the iso from (url). It is highly recommended to verify the iso to make sure it has not been tampered with.
+    </p>
+
+    <h2>Verification</h2>
+
+    <p>
+      To verify the iso you will need GPG. Import my public key with:
+    </p>
+
+    <div class="code">
+      gpg --recv-keys (key)
+    </div>
+
+    <p>
+      It should say:
+    </p>
+
+    <div class="code">
+      (output)
+    </div>
+
+    <p>
+      Verify the fingerprint by running:
+    </p>
+
+    <div class="code">
+      gpg --fingerprint (key)
+    </div>
+
+    <p>
+      It should say:
+    </p>
+
+    <div class="code">
+      (output)
+    </div>
+
+    <p>
+      Now download the signatue from here(url). <br>
+      <br>
+      Verify the iso by running:
+    </p>
+
+    <div class="code">
+      gpg --verify obscurix.iso obscurix.asc
+    </div>
+
+    <p>
+      It should say:
+    </p>
+
+    <div class="code">
+      (output)
+    </div>
+
+    <p>
+      If it says it is a valid signature then the iso you have downloaded has not been tampered with.
+    </p>
+
+    <h2>Installation</h2>
+
+    <p>
+      To install Obscurix you will need at least a 4GB USB stick. <br>
+    </p>
+
+    <h3>Linux</h3>
+
+    <p>
+      To install it on Linux, plug in your USB and find the drive name. It will be something like /dev/sdb. <br>
+      <br>
+      Now run:
+    </p>
+
+    <div class="code">
+      sudo dd bs=4M if=obscurix.iso of=/dev/sdX status=progress && sync
+    </div>
+
+    <p>
+      Replace "/dev/sdX" with your USB's drive name. It will now flash the iso to the USB stick.
+    </p>
+
+    <h3>Windows</h3>
+
+    <p>
+      Not documented yet.
+    </p>
+
+    <h3>MacOS</h3>
+
+    <p>
+      Not documented yet.
+    </p>
+
+    <h3>BSD</h3>
+
+    <p>
+      Not documented yet.
+    </p>
+
+    <h2>Building From Source</h2>
+
+    <p>
+      Users with high security needs may want to build the iso from source code. This allows them to manually audit the OS before installing. Only advanced users should do this as you can mess something up. <br>
+      <br>
+      Building the iso requires you to be on an Arch Linux system (if it isn't your host, it can be done in a VM or live USB). <br>
+      <br>
+      Note: Building the iso needs to be done as root. <br>
+      <br>
+      You will need to install <span class="code">git</span> and <span class="code">archiso</span> from the Arch repositories before building. To do this, run:
+    </p>
+
+    <div class="code">
+      sudo pacman -Syu git archiso
+    </div>
+
+    <p>
+      Get the source code by running:
+    </p>
+
+    <div class="code">
+      git clone (url)
+    </div>
+
+    <p>
+      Navigate to the Obscurix folder:
+    </p>
+
+    <div class="code">
+      cd Obscurix
+    </div>
+
+    <p>
+       Now build the iso by running:
+    </p>
+
+    <div class="code">
+      ./build.sh -v
+    </div>
+
+    <p>
+      Depending on your system's resources, this can take a long time.
+    </p>
+  </body>
+</html>

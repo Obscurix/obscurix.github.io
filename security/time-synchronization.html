@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../styles.css">
+    <title>Obscurix - Time Synchronization</title>
+  </head>
+  <body>
+    <h1>Time Synchronization</h1>
+
+    <p>
+      Time synchronization is vital for anonymity and security. A wrong system clock can leave you open to replay attacks, using outdated versions of software and https certificates and de-anonymization of users and onion services. <br>
+      <br>
+      Outdated clocks may also break Tor and TLS. <br>
+      <br>
+      Currently, there is no time synchronization method in Obscurix. It is highly recommended to set your hardware clock to the correct time and Obscurix will set the system time from that.
+    </p>
+
+    <h2>NTP</h2>
+
+    <p>
+      NTP is very insecure as it is unencrypted, unauthenticated and leaks your local time. Because of that, it is disabled by masking systemd-timesyncd and not installing or enabling any other NTP clients. <br>
+      <br>
+      It also uses UDP so it can't be routed through Tor.
+    </p>
+
+    <h2>Sdwdate</h2>
+
+    <p>
+      Sdwdate is a secure replacement for NTP. It is written in a memory safe language, has distributed trust, is encrypted and authenticated, is functional over Tor and has AppArmor profiles and sandboxed systemd services. It by default, connects to only Tor onion services so no CAs are needed. It is currently maintained by the Whonix project. <br>
+      <br>
+      The problem with this is that it is not in the Arch Linux repositories or AUR which makes it hard to reliably use within Obscurix and makes it hard to update it. <br>
+      <br>
+      See <a href="https://www.whonix.org/wiki/Sdwdate">https://www.whonix.org/wiki/Sdwdate</a>.
+    </p>
+
+  </body>
+</html>

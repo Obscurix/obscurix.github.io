@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../styles.css">
+    <title>Obscurix - Other Security Features</title>
+  </head>
+  <body>
+    <h1>Other Security Features</h1>
+
+    <p>
+      Other security features that do not fit in any of the other pages are documented here.
+    </p>
+
+    <h2>Umask</h2>
+
+    <p>
+      Umasks control the default file permissions of newly created files. The default umask in Obscurix is set to 0077 in /etc/profile.d/umask.sh. This makes new files only readable by the owner.
+    </p>
+
+    <h2>Mirrors</h2>
+
+    <p>
+      Pacman is configured to only use HTTPS mirrors. This prevents malicious exit nodes from injecting code during updates and it prevents exit nodes from seeing what you're downloading.
+    </p>
+
+    <h2>Thunar</h2>
+
+    <p>
+      Thunar is configured so it uses the ISO format for dates, disables thumbnails, disables thunar-volman and disables the network bookmark.
+    </p>
+
+    <h2>Entropy</h2>
+
+    <p>
+      Jitterentropy and haveged is installed by default to gather more entropy.
+    </p>
+  </body>
+</html>

@@ -1,0 +1,13 @@
+body {
+    max-width: 650px;
+    font-size: 18px;
+    font-family: 'Nobile', Helvetica, Arial, sans-serif;
+    margin: 100px;
+}
+
+.code {
+  font-family: monospace;
+  font-size: 90%;
+  display: inline-block;
+  border: solid 2px #5882FA;
+}

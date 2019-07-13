@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../styles.css">
+    <title>Obscurix - Swap</title>
+  </head>
+  <body>
+    <h1>Swap</h1>
+
+    <p>
+      Swap can be used to write parts of RAM to disk. This is disabled as it could write important information such as passwords, encryption keys etc. to disk. <br>
+      <br>
+      It's disabled by setting <span class="code">vm.swappiness=0</span> in /etc/sysctl.d/swappiness.conf. <br>
+      <br>
+      /usr/bin/swapon is also replaced with a dummy binary that just runs /bin/true to prevent something from mounting a swap partition on the hard drive.
+    </p>
+  </body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../styles.css">
+    <title>Obscurix - Kernel Hardening</title>
+  </head>
+  <body>
+    <h1>Kernel Hardening</h1>
+
+    <p>
+      This page documents all of the things done to harden the kernel. Obscurix uses the default linux kernel from the Arch Linux repositories. In the future it may use linux-hardened or a custom kernel for enhanced security.
+    </p>
+
+    <h2>Sysctl Changes</h2>
+
+    <p>
+      Sysctl is used to change some settings in the kernel for increased security. They are documented below. <br>
+      <br>
+      <span class="code">kernel.dmesg_restrict=1</span> is set to restrict the kernel logs to root only. This prevents an attacker from learning more about the system and what to exploit. <br>
+      <br>
+      <span class="code">kernel.kptr_restrict=2</span> is set which hides the kernel symbols in /proc/kallsyms to prevent an attacker from using them to learn more about what to attack on your system. <br>
+      <br>
+      <span class="code">kernel.unprivileged_bpf_disabled=1</span> is set which restricts the BPF JIT compiler to root only. This prevents a lot of possible attacks against the JIT compiler such as heap spraying. <br>
+      <br>
+      <span class="code">net.core.bpf_jit_harden=2</span> is set which hardens the JIT compiler against certain attacks such as heap spraying attacks. <br>
+      <br>
+      <span class="code">kernel.yama.ptrace_scope=2</span> is set which restrict the use of the ptrace() syscall to root only. ptrace can be used to inspect and modify running processes which is very dangerous. <br>
+      <br>
+      <span class="code">kernel.kexec_load_disabled=1</span> is set which disables kexec as it can be used to livepatch the running kernel. <br>
+      <br>
+      <span class="code">net.ipv4.tcp_syncookies=1</span> is set to enable TCP syncookies which prevents SYN flood attacks (a type of DoS). <br>
+      <br>
+      <span class="code">net.ipv4.tcp_rfc1337=1</span> is set which prevents time-wait assassination attacks. <br>
+      <br>
+      <span class="code">net.ipv4.conf.default.rp_filter=1</span> and <span class="code">net.ipv4.conf.all.rp_filter=1</span> are set which prevents certain IP spoofing methods. <br>
+      <br>
+    </p>
+
+    <div class="code">
+      net.ipv4.conf.all.accept_redirects=0 <br>
+      net.ipv4.conf.default.accept_redirects=0 <br>
+      net.ipv4.conf.all.secure_redirects=0 <br>
+      net.ipv4.conf.default.secure_redirects=0 <br>
+      net.ipv6.conf.all.accept_redirects=0 <br>
+      net.ipv6.conf.default.accept_redirects=0
+    </div>
+
+    <p>
+      are set which disables ICMP redirect acceptance. <br>
+      <br>
+      <span class="code">net.ipv4.conf.all.send_redirects=0 <br>
+      net.ipv4.conf.default.send_redirects=0</span> are set which disables ICMP redirect sending. <br>
+      <br>
+      <span class="code">net.ipv4.icmp_echo_ignore_all=1</span> are set which makes your system ignore ICMP requests. <br>
+      <br>
+      <span class="code">vm.mmap_rnd_bits=32
+      vm.mmap_rnd_compat_bits=16</span> are set which improves ASLR effectiveness for mmap. <br>
+      <br>
+      <span class="code">net.ipv4.tcp_timestamps=0</span> is set which disables TCP timestamps. These can be used to find out your system time which can be an identifier. <br>
+      <br>
+      <span class="code">net.ipv4.tcp_sack=0</span> is set which disables SACK. SACK is commonly exploited and rarely used. <br>
+      <br>
+      <span class="code">kernel.sysrq=0</span> is set which disables the SysRq key. The SysRq key can be used to run arbitrary commands that would normally require root so it is best to disable it. <br>
+      <br>
+      <span class="code">kernel.unprivileged_userns_clone=0</span> is set which disables unprivileged user namespaces. User namespaces add a lot of attack surface for privilege escalation so they are disabled for unprivileged users. Because of this, bubblewrap has to be made setuid.
+    </p>
+
+    <h2>Boot Parameters</h2>
+
+    <p>
+      Obscurix passes some parameters to the kernel at boot through the bootloader to increase security. These are documented below. <br>
+      <br>
+      <span class="code">apparmor=1 security=apparmor</span> are used to enable AppArmor. <br>
+      <br>
+      <span class="code">slab_nomerge</span> is used which disables merging of slabs of similar sizes as they can sometimes be used in a vulnerable way and be exploited. <br>
+      <br>
+      <span class="code">slub_debug=FZP</span> is used which enables redzoning, sanity checks and memory poisoning. Redzoning can help to prevent slabs from being overwritten past its size. Poisoning overwrites freed memory to prevent some use-after-free vulnerabilities. <br>
+      <br>
+      <span class="code">mce=0</span> is used which causes the kernel to panic on uncorrectable errors in ECC memory that could be exploited. <br>
+      <br>
+      <span class="code">page_poison=1</span> is used which overwrites freed memory. <br>
+      <br>
+      <span class="code">ipv6.disable=1</span> is used to disable the IPv6 stack which has some privacy issues, is not yet fully supported in Tor and adds extra attack surface. <br>
+      <br>
+      <span class="code">pti=on</span> is used to enable Kernel Page Table Isolation which prevents some KASLR bypasses and mitigates Meltdown. <br>
+      <br>
+      <span class="code">mds=full,nosmt</span> is used to enable all mitigations for the MDS vulnerability and disable nosmt which can be used to exploit the MDS vulnerability.
+    </p>
+
+    <h2>Other</h2>
+
+    <p>
+      /proc is mounted with hidepid=2 to prevent users from seeing eachother's processes.
+    </p>
+  </body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="styles.css">
+    <title>Obscurix - Anonymity Networks</title>
+  </head>
+  <body>
+    <h1>Anonymity Networks</h1>
+
+    <p>
+      Obscurix comes with support for Tor, I2P and Freenet with browsers configured for each. All network traffic is forced through Tor with an exception for I2P and Freenet. <br>
+      <br>
+      I2P and Freenet are not enabled or installed by default. The installers are in your home directory and Obscurix comes with easy scripts to use them. After installation, they are enabled.
+    </p>
+
+    <h2>I2P</h2>
+
+    <p>
+      I2P is a peer-to-peer, anonymous network made to protect against surveillance and censorship. Unlike Tor, I2P does not have an officially supported way to access the clearnet. <br>
+      <br>
+      To install I2P, run <span class="code">installi2p</span>, install it into /home/user/i2p and click the I2P Browser desktop icon. The installation verifies the installer with GPG and checksums.
+    </p>
+
+    <h2>Freenet</h2>
+
+    <p>
+      Freenet is a peer-to-peer, anonymous, distributed data store. <br>
+      <br>
+      To install Freenet, run <span class="code">installfreenet</span>, install it into /home/user/Freenet and click the Freenet Browser desktop icon. The installation verifies the installer with GPG.
+    </p>
+
+    <h2>I2P and Freenet Browsers</h2>
+
+    <p>
+      The I2P and Freenet browsers that are installed by default, are copies of the Tor Browser that is configured especially for those networks.
+    </p>
+
+    <h2>Chaining Anonymous Networks</h2>
+
+    <p>
+      Obscurix does not chain anonymous networks. For example, it prevents I2P from being routed over Tor. This is because chaining anonymous networks may worsen anonymity by making you stand out from other users of those networks. Chaining these networks will also greatly decrease speed and may cause other issues.
+    </p>
+  </body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../styles.css">
+    <title>Obscurix - Application Confinement</title>
+  </head>
+  <body>
+    <h1>Application Confinement</h1>
+
+    <p>
+      Applications in Obscurix are restricted as much as possible with AppArmor and bubblewrap.
+    </p>
+
+    <h2>AppArmor</h2>
+
+    <p>
+      AppArmor is a MAC (Mandatory Access Control) system which restricts what applications can do. By default, it blocks access to every file unless it is whitelisted in a profile. AppArmor profiles are configured for a number of different applications such as the Tor Browser and Tor daemon.
+    </p>
+
+    <h2>Bubblewrap</h2>
+
+    <p>
+      Bubblewrap is a sandboxing program that uses Linux namespaces, seccomp and Linux capabilities to isolate applications. Obscurix uses this for many applications such as the Tor Browser and Hexchat. <br>
+      <br>
+      Firejail is not used as it adds a lot of attack surface for privilege escalation, has had trivial privilege escalation vulnerabilities in the past and it may even worsen security.
+    </p>
+
+    <h2>Systemd Sandboxes</h2>
+
+    <p>
+      Systemd allows you to sandbox systemd services. Obscurix sandboxes as many services as possible.
+    </p>
+
+  </body>
+</html>

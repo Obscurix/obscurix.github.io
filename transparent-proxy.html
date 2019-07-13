@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="styles.css">
+    <title>Obscurix - Tor Transparent Proxy</title>
+  </head>
+  <body>
+    <h1>Tor Transparent Proxy</h1>
+
+    <p>
+      Obscurix uses a transparent proxy to force all connections through Tor and block anything it can't torify. This makes IP leaks impossible without a root exploit. I2P and Freenet traffic is allowed through the firewall. <br>
+      <br>
+      The firewall is configured with iptables and the rules are in /etc/iptables/iptables.rules. There is no firewall for IPv6 traffic as the IPv6 network stack is disabled. <br>
+      <br>
+      The Tor Browser's Tor daemon is disabled and the system Tor daemon is configured to open a SocksPort at 9150. This is to prevent the Tor Browser's Tor daemon's traffic being forced through the system Tor daemon thus resulting in Tor over Tor. Instead, the Tor Browser uses the system Tor daemon. <br>
+      <br>
+      Unlike Tails, there is no Unsafe Browser. The reason for this is that it allows an adversary to easily discover your IP address without root privileges. This makes it not possible to login to captive portals though. If you do need to login to a captive portal, you can specify the <span class="code">notor</span> parameter at boot, login to the captive portal and re-enable Tor by running
+    </p>
+
+    <div class="code">
+      sudo systemctl start tor.service iptables.service
+    </div>
+
+    <h2>Stream Isolation</h2>
+
+    <p>
+      Tor stream isolation is configured for applications by default to prevent identity correlation through circuit sharing. It does this by configuring applications to go through their own SocksPorts. <br>
+      <br>
+      The Tor Browser is configured to go though SocksPort 9150 and pacman is configured to go through SocksPort 9060. Some generic applications are configured to go through SocksPort 9050 and every other connection will go through the TransPort (port 9040).
+    </p>
+
+    <h2>DNS</h2>
+
+    <p>
+      /etc/resolv.conf is set to use 127.0.0.1 as its nameserver for DNS resolution. The problem with this is it only supports port 53 and the DNSPort is set at port 5353 so Obscurix uses dnsmasq to solve this problem. /etc/resolv.conf points to dnsmasq which then points to the Tor DNSPort. NetworkManager is configured not to overwrite /etc/resolv.conf and resolv.conf has the immutable flag so it can't be overwritten.
+    </p>
+  </body>
+</html>

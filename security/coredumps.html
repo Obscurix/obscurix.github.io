@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../styles.css">
+    <title>Obscurix - Core Dumps</title>
+  </head>
+  <body>
+    <h1>Core Dumps</h1>
+
+    <p>
+      Core dumps are disabled as they contain the recorded state of the working memory of a program at a specific time, usually when that program has crashed. This can contain lots of important information such as encryption keys and passwords. <br>
+    </p>
+
+    <div class="code">
+      [Coredump] <br>
+      Storage=none
+    </div>
+
+    <p>
+      is set in /etc/systemd/coredump.conf.d/disable-coredumps.conf to disable them and <span class="code">* hard core 0</span> is set in /etc/security/limits.conf
+    </p>
+
+  </body>
+</html>

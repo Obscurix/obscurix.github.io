@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../styles.css">
+    <title>Obscurix - Reduced Attack Surface</title>
+  </head>
+  <body>
+    <h1>Reduced Attack Surface</h1>
+
+    <p>
+      Obscurix reduces the attack surface as much as possible. It comes with a small amount of packages and blacklists unneeded and potentially dangerous modules.
+    </p>
+
+    <h2>Blacklisted Modules</h2>
+
+    <p>
+      Uncommon network protocols are blacklisted as they may contain unknown vulnerabilities and many have had bad vulnerabilities in the past. These are blacklisted in /etc/modprobe.d. <br>
+      <br>
+      cramfs, freevxfs, jffs2, hfs, hfsplus, squashfs and udf are filesystems that are also blacklisted as they are rarely used. <br>
+      <br>
+      Bluetooth, firewire and thunderbolt are blacklisted. Bluetooth can be used to connect to your system and is thus dangerous. Thunderbolt and Firewire can be used for DMA attacks. <br>
+      <br>
+      Netfilter's conntrack helper is disabled as it can be used to parse many unsafe protocols in the kernel and modify the firewall. <br>
+      <br>
+      The webcam kernel module is blacklisted from loading so an attacker can't use it to spy on you. <br>
+      <br>
+      The PC Speaker module is blacklisted for discretion purposes. This module can cause your computer to make beeps or other various noises. <br>
+      <br>
+      The MEI is the interface between the host and the Intel ME. The Intel ME is a chip on modern Intel CPUs with a lot of attack surface. Because of this, the MEI may be useful to an attacker for gaining control over your CPU and is blacklisted. The MEI also causes a bug on some hardware where a shutdown turns into a reboot.
+    </p>
+
+    <h2>Wireless Devices</h2>
+
+    <p>
+      At boot Obscurix blocks all wireless devices except WiFi with <span class="code">rfkill</span>. This will block things such as Bluetooth to reduce attack surface.
+    </p>
+
+  </body>
+</html>

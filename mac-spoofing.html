@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="styles.css">
+    <title>Obscurix - MAC Address Spoofing</title>
+  </head>
+  <body>
+    <h1>MAC Address Spoofing</h1>
+
+    <p>
+      MAC addresses are unique identifiers assigned to network interface controllers (NICs). Every time you connect to a network (e.g. WiFi or ethernet), your MAC address is exposed. This allows people to use it to track you and uniquely identify you on the local network. Because of this, Obscurix spoofs the MAC address at boot using macchanger. <br>
+      <br>
+      Obscurix does not completely randomize the MAC address. This is because having a completely random MAC address is obvious and will have the adverse effect of making you stand out. <br>
+      <br>
+      The OUI (Organizationally Unique Identifier) part of the MAC address identifies the chipset's manufacturer. Randomizing this part of the MAC address may give you an OUI that has never been used before, hasn't been used in decades or is extremely rare in your area which makes you stand out and makes it obvious that you are spoofing your MAC address. <br>
+      <br>
+      The end of the MAC address (the NIC) identifies your device and can be used to track you. Randomizing this part of the MAC address prevents you from being tracked and makes the MAC address believable.
+    </p>
+
+    <h2>Implementation</h2>
+
+    <p>
+      Macchanger is executed at boot with the macspoof.service systemd service. Network interface MAC addresses are spoofed by gaining a list of network interfaces by looking in /sys/class/net and using a for loop to run macchanger -e on each of them. Loopback interfaces and virtual machine interfaces (virbr0, virbr1) etc. are excluded. This randomizes the NIC part of your MAC address but leaves the OUI.
+    </p>
+  </body>
+</html>

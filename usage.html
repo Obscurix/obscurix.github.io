@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="styles.css">
+    <title>Obscurix - Usage</title>
+  </head>
+  <body>
+    <h1>Usage</h1>
+
+    <p>
+      Obscurix is very easy to use. It uses XFCE as a desktop environment that is pre-configured to look nice. It uses the Adapta-Nokto-Eta theme and Papirus icon theme. The background comes from this <a href="https://www.reddit.com/comments/caiad9">Reddit post</a>. <br>
+      <br>
+      Web browsing can be done via the Tor Browser which is specially configured to protect your privacy and anonymity. <br>
+      <br>
+      Hexchat is installed by default for IRC chats. It is configured for privacy and security as per <a href="https://trac.torproject.org/projects/tor/wiki/doc/TorifyHOWTO/XChat">https://trac.torproject.org/projects/tor/wiki/doc/TorifyHOWTO/XChat</a>. <br>
+      <br>
+      VLC is installed by default for watching videos.
+    </p>
+
+    <h2>Boot Parameters</h2>
+
+    <p>
+      WARNING: Don't use these unless you know what you're doing. <br>
+      <br>
+      Certain things can be configured via boot parameters. These are things you can tell the kernel to do. They are configured at the boot loader. When the screen pops up and asks you to boot into Obscurix, enter "tab" to be able to edit the boot parameters and hit enter to boot. Don't remove any or you will break things or worsen security. <br>
+      <br>
+      Obscurix has a few custom boot parameters that can be used to configure certain things. They are documented below.
+    </p>
+
+    <h3>notor</h3>
+
+    <p>
+      Specifying the <span class="code">notor</span> boot parameter will disable the Tor process and firewall. Do not do this unless you know exactly what you are doing as this parameter will greatly decrease anonymity. This should only be used for debugging purposes. <br>
+      <br>
+      Networking may also be messed up with this parameter as it doesn't do anything other than disable Tor. You will need to re-configure networking manually.
+    </p>
+
+    <h3>nonet</h3>
+
+    <p>
+      Specifying the <span class="code">nonet</span> boot parameter will disable all network access. <br>
+      <br>
+      It does this by getting a list of network interfaces, setting them all down, disabling Tor so the firewall blocks outgoing traffic, disabling NetworkManager and adding iptables rules to block all outgoing traffic.
+    </p>
+
+    <h3>rootpw</h3>
+
+    <p>
+      Specifying the <span class="code">rootpw</span> boot parameter will allow you to gain root access. It adds the user to the "wheel" group, allows the wheel group to use <span class="code">sudo</span> and sets the user's password to "password". This allows you to run any command as root by putting <span class="code">sudo</span> before it and entering the password. <br>
+      <br>
+      Using <span class="code">su</span> to switch to the root user or logging in as root from a tty is still not possible. <br>
+      <br>
+      This boot parameter will greatly decrease security by allowing any program easy root access. It is highly recommended to restrict root access after you've done whatever you needed root for.
+    </p>
+
+    <h4>Restricting Root Access Again</h4>
+
+    <p>
+      If you have used the <span class="code">rootpw</span> boot parameter then you should restrict root access again once you've done what you needed root for. This isn't too hard and is documented below. <br>
+      <br>
+      Open a terminal and run <span class="code">sudo su</span> to get a root shell. Remove the user from the "wheel" group by running
+    </p>
+
+    <div class="code">
+      gpasswd -d user wheel
+    </div>
+
+    <p>
+      Now prevent users of the wheel group from using <span class="code">sudo</span> by running <span class="code">visudo</span> and adding a # before <span class="code">%wheel ALL=(ALL) ALL</span>. So now it should say,
+    </p>
+
+    <div class="code">
+      #%wheel ALL=(ALL) ALL
+    </div>
+
+    <p>
+      Close the terminal and now root access will be restricted again. You can test this if you want to.
+    </p>
+
+    <h3>nomacspoof</h3>
+
+    <p>
+      Specifying <span class="code">nomacspoof</span> as a boot parameter will disable MAC address spoofing. This can be useful if the network you are connecting to only allows connections from certain MAC addresses.
+    </p>
+
+    <h2>Installing New Software</h2>
+
+    <p>
+      If you wish to install new software, there are two ways you can do it.
+    </p>
+
+    <ul>
+      <li>Modify the source code to include it (the most secure way)</li>
+      <li>Install it with pacman or manually install it (the least secure way)</li>
+    </ul>
+
+    <h3>Installing New Software with Pacman</h3>
+
+    <p>
+      To install new software with pacman you will need root privileges (see the <span class="code">rootpw</span> boot parameter above). First, update the system. This can be done by running
+    </p>
+
+    <div class="code">
+      sudo pacman -Syu
+    </div>
+
+    <p>
+      Now install the software with pacman
+    </p>
+
+    <div class="code">
+      sudo pacman -S (package)
+    </div>
+
+    <p>
+      Replace (package) with the package name. This can take a long time, depending on the speed of your internet connection and how old the iso is.
+    </p>
+
+    <h3>Modifying the source code to include new software</h3>
+
+    <p>
+      To modify the source code to include new software, follow the building instructions at <a href="download.html">Downloading and Installing</a> but before building, edit the packages.x86_64 file to include the name of the new software. Make sure the software is in the Arch Linux repositories before doing this.
+    </p>
+  </body>
+</html>

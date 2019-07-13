@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../styles.css">
+    <title>Obscurix - The Root Account</title>
+  </head>
+  <body>
+    <h1>The Root Account</h1>
+
+    <p>
+      The root account has access to everything on your system. This is why Obscurix locks it down as much as possible. Note that these measures do nothing to protect against root exploits. <br>
+      <br>
+      If root is needed to perform some system commands, use the <span class="code">rootpw</span> boot parameter. See <a href="../usage.html">Usage</a> for more details.
+    </p>
+
+    <h2>/etc/securetty</h2>
+
+    <p>
+      /etc/securetty tells the kernel where root is allowed to log into. This file is empty in Obscurix to prevent someone from logging in as root from a tty.
+    </p>
+
+    <h2>Restricted Su</h2>
+
+    <p>
+      Su is a command which allows you to change user. By default, it tries to change to the root user. Obscurix restricts the usage of su to only users within the wheel group. This prevents malware from attempting to use su to gain root. The user is not within the wheel group.
+    </p>
+
+    <h2>Locked Root Account</h2>
+
+    <p>
+      The root account is locked with <span class="code">passwd -l root</span>. This makes it impossible to login to the root account.
+    </p>
+  </body>
+</html>

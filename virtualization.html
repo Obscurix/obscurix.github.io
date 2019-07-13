@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="styles.css">
+    <title>Obscurix - Virtualization</title>
+  </head>
+  <body>
+    <h1>Virtualization</h1>
+
+    <p>
+      It is unrecommended to run Obscurix inside a Virtual Machine (VM). This is because it will depend on the security of your host OS, it may leave traces behind on your hard drive and some important features will not work such as MAC address spoofing. <br>
+      <br>
+      If however, you secure your host operating system and configure it not to store any traces and account for the broken features, you may improve security by protecting against malware that embeds itself into firmware (this can also be solved by running a VM inside Obscurix). This should only be for advanced users and is highly unrecommended.
+    </p>
+
+    <h2>Hypervisors</h2>
+
+    <p>
+      Obscurix is only supported on Virtualbox. Any other hypervisor may be worse for security or may not work at all.
+    </p>
+
+    <h2>Virtualbox</h2>
+
+    <p>
+      You will need to install Virtualbox. Once it is installed, open it and click "New". For the name, type in "Obscurix" and make sure the type is "Linux" and the version, "Arch Linux". Click next and set the needed amount of RAM. 2048MB is recommended. Click next and do not create a virtual hard disk. Now click "Create" and "Continue". <br>
+      <br>
+      Click on the VM at the left panel, click "Settings", go to the "Storage" section and click on the disk icon. Click the drop down menu on the right and select the Obscurix iso. Click the Live CD/DVD checkbox. <br>
+      <br>
+      You can now click "Ok" and start the VM.
+    </p>
+
+    <h3>Extra Security</h3>
+
+    <p>
+      For extra security, you can configure the VM settings more to reduce attack surface and enable security features. <br>
+      <br>
+      In General -> Advanced make sure the Shared Clipboard and Drag'n'Drop is disabled. <br>
+      <br>
+      In System -> Motherboard set the Pointing Device to PS/2 Mouse (this is needed to disable the USB controller) and remove everything in the boot order except the optical drive. <br>
+      <br>
+      In System -> Processor, enable PAE/NX. The NX bit is a security feature which marks certain areas of memory as non-executable. <br>
+      <br>
+      In Display, make sure 3D Acceleration, 2D Acceleration, Remote Display and Recording are disabled. <br>
+      <br>
+      In Audio, disable audio. <br>
+      <br>
+      In Network, make sure Adapter 2, Adapter 3 and Adapter 4 are disabled. <br>
+      <br>
+      In Serial Ports, disable them all. <br>
+      <br>
+      In USB, disable the USB controller. <br>
+      <br>
+      Don't create any shared folders or do GPU passthrough.
+    </p>
+
+    <h2>Configuring Your Host OS</h2>
+
+    <p>
+      This section is only for advanced users and only applies for Linux distros. For any other OS, you're on your own.
+    </p>
+
+    <h3>Disabling Swap</h3>
+
+    <p>
+      Swap can write parts of RAM to disk. This can leave traces of Obscurix on your hard drive. This can be disabled on your host by setting <span class="code">vm.swappiness=0</span> with sysctl, running <span class="code">swapoff -a</span> and deleting any swap partitions or files.
+    </p>
+
+    <h3>Disabling Coredumps</h3>
+
+    <p>
+      Core dumps contain the recorded state of the working memory of a program at a specific time, usually when that program has crashed. These can leave traces of Obscurix on your hard drive so it is recommended to disable them. See this <a href="https://theprivacyguide1.github.io/linux_hardening_guide#core_dumps">guide</a> for instructions on how to disable them.
+    </p>
+
+    <h3>Running Obscurix inside a tmpfs</h3>
+
+    <p>
+      You can create a chroot jail inside a tmpfs, install virtualbox in it and run Obscurix in it to make it less likely that traces will be left.
+    </p>
+
+    <h3>Spoofing your MAC address</h3>
+
+    <p>
+      As Obscurix cannot spoof your host's MAC address, you will need to spoof it yourself. Install macchanger and find the list of your network interfaces by running <span class="code">ip a</span>. Spoof the MAC addresses of those network interfaces by running
+    </p>
+
+    <div class="code">
+      macchanger -e (interface)
+    </div>
+
+    <p>
+      Replace (interface) with the name of the network inteface.
+    </p>
+
+    <h3>Restricting Virtualbox</h3>
+
+    <p>
+      Consider enabling an <a href="https://github.com/Whonix/apparmor-profile-virtualbox">AppArmor profile</a> for Virtualbox along with sandboxing such as Firejail or Bubblewrap. If using libvirt, restrict it with <a href="https://gitlab.com/apparmor/apparmor/wikis/Libvirt">AppArmor</a> too.
+    </p>
+
+  </body>
+</html>
