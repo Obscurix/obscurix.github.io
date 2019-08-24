@@ -11,7 +11,7 @@
     <p>
       Obscurix uses a transparent proxy to force all connections through Tor and block anything it can't torify. This makes IP leaks impossible without a root exploit. I2P and Freenet traffic is allowed through the firewall. <br>
       <br>
-      The firewall is configured with iptables and the rules are in /etc/iptables/iptables.rules. There is no firewall for IPv6 traffic as the IPv6 network stack is disabled. <br>
+      The firewall is configured with iptables and the rules are in /etc/iptables/iptables.rules. <br>
       <br>
       The Tor Browser's Tor daemon is disabled and the system Tor daemon is configured to open a SocksPort at 9150. This is to prevent the Tor Browser's Tor daemon's traffic being forced through the system Tor daemon thus resulting in Tor over Tor. Instead, the Tor Browser uses the system Tor daemon. <br>
       <br>
@@ -34,6 +34,50 @@
 
     <p>
       /etc/resolv.conf is set to use 127.0.0.1 as its nameserver for DNS resolution. The problem with this is it only supports port 53 and the DNSPort is set at port 5353 so Obscurix uses dnsmasq to solve this problem. /etc/resolv.conf points to dnsmasq which then points to the Tor DNSPort. NetworkManager is configured not to overwrite /etc/resolv.conf and resolv.conf has the immutable flag so it can't be overwritten.
+    </p>
+
+    <h2>Tor Control Port Filter Proxy</h2>
+
+    <p>
+      The Tor control port allows you to send commands that control the Tor process. By default, there is no authentication needed and all commands are allowed. This is bad as there are some extremely dangerous commands such as <span class="code">GETINFO address</span> which can leak your real external IP address. To test this, install netcat, configure a control port in your torrc by adding <span class="code">ControlPort (port)</span> and make sure there is no authentication set. For this example, the Tor control port will be set at 9151 (the default for the Tor Browser). <br>
+      <br>
+      To connect to the Tor control port, run
+    </p>
+
+    <div class="code">
+      nc 127.0.0.1 9151
+    </div>
+
+    <p>
+      Enter
+    </p>
+
+    <div class="code">
+      authenticate
+    </div>
+
+    <p>
+      It should say
+    </p>
+
+    <div class="code">
+      250 OK
+    </div>
+
+    <p>
+      If not, there is some authentication configured in your torrc. Now enter
+    </p>
+
+    <div class="code">
+      GETINFO address
+    </div>
+
+    <p>
+      You should now see your real IP address. <br>
+      <br>
+      This is dangerous for obvious reasons. To fix this, we can disable the control port altogether, or we can add a control port filter proxy. Disabling the Tor control port will break a lot of functionality such as the "New Identity" button on the Tor Browser. A control port filter proxy filters out dangerous Tor control port commands and allows only the needed ones. For example, we can use the "New Identity" button without being able to use <span class="code">GETINFO address</span>. <br>
+      <br>
+      Obscurix uses Whonix's <a href="https://github.com/Whonix/onion-grater">onion-grater</a> as a control port filter proxy. It's open source, written in a memory safe language, has an AppArmor profile, systemd sandboxing and is easy to use.
     </p>
   </body>
 </html>

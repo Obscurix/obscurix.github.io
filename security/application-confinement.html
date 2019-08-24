@@ -32,5 +32,28 @@
       Systemd allows you to sandbox systemd services. Obscurix sandboxes as many services as possible.
     </p>
 
+    <h2>Sandbox</h2>
+
+    <p>
+      'Sandbox' is a script I developed that creates a restrictive bubblewrap sandbox you can run your applications in. If you don't want to create sandboxes yourself for applications that aren't already sandboxed, you can use this tool to create one for you. <br>
+      <br>
+      It also uses Xephyr for X11 sandboxing. <br>
+      <br>
+      Do not use this with applications that are already sandboxed like the Tor Browser. <br>
+      <br>
+      For example, if you want to confine firefox with this script, run
+    </p>
+
+    <div class="code">
+      sandbox firefox
+    </div>
+
+    <p>
+      If you add the "--unshare-net" parameter, the application will run inside a network namespace with no access to the network. For example, if you want to run firefox in a sandbox with no network access, run
+    </p>
+
+    <div class="code">
+      sandbox --unshare-net firefox
+    </div>
   </body>
 </html>

@@ -14,11 +14,12 @@
 
     <div class="code">
       [Coredump] <br>
-      Storage=none
+      Storage=none <br>
+      ProcessSizeMax=0
     </div>
 
     <p>
-      is set in /etc/systemd/coredump.conf.d/disable-coredumps.conf to disable them and <span class="code">* hard core 0</span> is set in /etc/security/limits.conf
+      is set in /etc/systemd/coredump.conf.d/disable-coredumps.conf to disable them, <span class="code">kernel.core_pattern=|/bin/false</span> is set in /etc/sysctl.d/disable-coredumps.conf and <span class="code">* hard core 0</span> is set in /etc/security/limits.conf
     </p>
 
   </body>

@@ -11,11 +11,21 @@
     <p>
       Obscurix is very easy to use. It uses XFCE as a desktop environment that is pre-configured to look nice. It uses the Adapta-Nokto-Eta theme and Papirus icon theme. The background comes from this <a href="https://www.reddit.com/comments/caiad9">Reddit post</a>. <br>
       <br>
-      Web browsing can be done via the Tor Browser which is specially configured to protect your privacy and anonymity. <br>
+      Once you have booted into Obscurix, it will ask you if you want to use a Tor bridge or not. If you select "No", you will connect directly to the Tor network. If you select "Yes", it will ask you for the bridge information which can be gotten from <a href="https://bridges.torproject.org">https://bridges.torproject.org</a>. Once you have entered the correct information, you will connect to Tor through a bridge. This hides Tor usage from your ISP and will help bypass Tor blocks. If you enter the wrong information, Tor will fail to start and you will have to reboot and enter the information in again. <br>
+      <br>
+      Web browsing can be done via the Tor Browser which is specially configured to protect your privacy and anonymity. Downloads can only be stored in /home/user/tor-browser_en-US/Browser/Downloads due to the application confinement. <br>
       <br>
       Hexchat is installed by default for IRC chats. It is configured for privacy and security as per <a href="https://trac.torproject.org/projects/tor/wiki/doc/TorifyHOWTO/XChat">https://trac.torproject.org/projects/tor/wiki/doc/TorifyHOWTO/XChat</a>. <br>
       <br>
-      VLC is installed by default for watching videos.
+      VLC is installed by default for watching videos. <br>
+      <br>
+      Thunderbird is installed for emails and other chats. It uses a configuration (a user.js file) hardened for privacy and security. <br>
+      <br>
+      Evince is installed for viewing documents such as PDFs. evince-thumbnailer and evince-previewer are disabled to reduce attack surface and evince itself is sandboxed. Some functionality such as automatically opening links in browsers is broken. <br>
+      <br>
+      Gedit is installed for editing files. You cannot edit files outside of your home directory due to the restrictions. <br>
+      <br>
+      Eog is installed for image viewing. You cannot view images outside of your home directory.
     </p>
 
     <h2>Boot Parameters</h2>
@@ -84,6 +94,18 @@
       Specifying <span class="code">nomacspoof</span> as a boot parameter will disable MAC address spoofing. This can be useful if the network you are connecting to only allows connections from certain MAC addresses.
     </p>
 
+    <h3>ipfs</h3>
+
+    <p>
+      Specifying <span class="code">ipfs</span> as a boot parameter will enable ipfs. See <a href="anonymity-networks.html">Non-Anonymous Networks</a> for more details.
+    </p>
+
+    <h3>cjdns</h3>
+
+    <p>
+      Specifying <span class="code">cjdns</span> as a boot parameter will enable cjdns. See <a href="anonymity-networks.html">Non-Anonymous Networks</a> for more details.
+    </p>
+
     <h2>Installing New Software</h2>
 
     <p>
@@ -121,6 +143,20 @@
 
     <p>
       To modify the source code to include new software, follow the building instructions at <a href="download.html">Downloading and Installing</a> but before building, edit the packages.x86_64 file to include the name of the new software. Make sure the software is in the Arch Linux repositories before doing this.
+    </p>
+
+    <h2>Bug Reports</h2>
+
+    <p>
+      As Obscurix is new software, it is not uncommon for there to be bugs. If you find a bug, please report it at the issues section on <a href="https://github.com/Obscurix/Obscurix/issues">Github</a>. <br>
+      <br>
+      Before creating a new issue, check if the same bug has already been reported. <br>
+      <br>
+      When reporting, please give a detailed description of the error. Just saying "X thing doesn't work" is not enough information to help me fix the problem. Please also provide any relevant logs. <br>
+      <br>
+      You will likely need to give the systemd logs which are very detailed. To get these, you will need to have booted Obscurix with the <span class="code">rootpw</span> boot parameter and run <span class="code">journalctl</span> in a terminal. Copy/paste the output and hide any sensitive information if there is any. If you are worried about there being sensitive information there and do not know how to hide it, you can email the logs to me in private. Likely, the most sensitive information would be what hardware you use which isn't that useful to an adversary. <br>
+      <br>
+      When sending large logs, please do not stick the whole thing in the Github issue. Use a pastebin such as <a href="https://pastebin.com">Pastebin</a> or <a href="https://privatebin.net">PrivateBin</a>.
     </p>
   </body>
 </html>

@@ -41,5 +41,37 @@
     <p>
       Obscurix does not chain anonymous networks. For example, it prevents I2P from being routed over Tor. This is because chaining anonymous networks may worsen anonymity by making you stand out from other users of those networks. Chaining these networks will also greatly decrease speed and may cause other issues.
     </p>
+
+    <h1>Non-Anonymous Networks</h1>
+
+    <p>
+      Obscurix includes more than just anonymity networks. It also includes many decentralised and encrypted networks. These networks are all forced through Tor to preserve your anonymity.
+    </p>
+
+    <h2>Zeronet</h2>
+
+    <p>
+      Zeronet is a peer to peer, decentralised network using bittorrent and bitcoin cryptography with built-in Tor support. <br>
+      <br>
+      It can be accessed via the Zeronet browser. Click the desktop icon to start it.
+    </p>
+
+    <h2>IPFS</h2>
+
+    <p>
+      IPFS is a peer to peer protocol and network designed for security and speed. <br>
+      <br>
+      It was not designed for privacy or anonymity and there are many ways to track and fingerprint an IPFS user such as <a href="https://www.chaoswebs.net/blog/tracking-ipfs-users-via-cache-probing.html">this attack</a>. As such, it is not enabled by default. <br>
+      <br>
+      If you boot with the <span class="code">ipfs</span> boot parameter, it will be enabled. See <a href="usage.html">Usage</a> for more details.
+    </p>
+
+    <h2>cjdns</h2>
+
+    <p>
+      cjdns is an encrypted IPv6 network. As it uses IPv6 and IPv6 is disabled in Obscurix, it is not enabled by default. It is installed by default though and users who wish to use it can re-enable IPv6 and enable it. <br>
+      <br>
+      To enable it, you will need to remove the <span class="code">ipv6.disable=1</span> boot parameter and add the <span class="code">cjdns</span> boot parameter. See <a href="usage.html">Usage</a> for more details.
+    </p>
   </body>
 </html>
