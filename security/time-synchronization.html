@@ -9,30 +9,29 @@
     <h1>Time Synchronization</h1>
 
     <p>
-      Time synchronization is vital for anonymity and security. A wrong system clock can leave you open to replay attacks, using outdated versions of software and https certificates and de-anonymization of users and onion services. <br>
-      <br>
-      Outdated clocks may also break Tor and TLS. <br>
-      <br>
-      Currently, there is no time synchronization method in Obscurix. It is highly recommended to set your hardware clock to the correct time and Obscurix will set the system time from that.
+      Time synchronization is vital for anonymity and security. A wrong system clock can leave you open to <a href="https://en.wikipedia.org/wiki/Replay_attack">replay attacks</a> by feeding you an old Tor consensus or old versions of software/https certificates, <a href="https://murdoch.is/papers/ccs06hotornot.pdf">de-anonymization of users and onion services</a>, linking sessions to the same pseudonym and clock skew fingerprinting. <br>
     </p>
 
     <h2>NTP</h2>
 
     <p>
-      NTP is very insecure as it is unencrypted, unauthenticated and leaks your local time. Because of that, it is disabled by masking systemd-timesyncd and not installing or enabling any other NTP clients. <br>
+      NTP is very insecure as it is unencrypted, unauthenticated and leaks your local computer time in NTP timestamp format which can be used for clock skew fingerprinting. Because of that, it is disabled by masking systemd-timesyncd and not installing or enabling any other NTP clients. <br>
       <br>
-      It also uses UDP so it can't be routed through Tor.
+      There is authentication for NTP called autokey but this <a href="http://zero-entropy.de/autokey_analysis.pdf">is insecure</a> and doesn't solve the problem of clock skew fingerprinting. <br>
+      <br>
+      It also uses UDP so it can't be routed through Tor and is vulnerable to <a href="https://en.wikipedia.org/wiki/Denial-of-service_attack#Amplification">amplifications attacks</a> (a type of DoS).
     </p>
 
-    <h2>Sdwdate</h2>
+    <h2>Implementation</h2>
 
     <p>
-      Sdwdate is a secure replacement for NTP. It is written in a memory safe language, has distributed trust, is encrypted and authenticated, is functional over Tor and has AppArmor profiles and sandboxed systemd services. It by default, connects to only Tor onion services so no CAs are needed. It is currently maintained by the Whonix project. <br>
+      Obscurix uses a tool I developed called <a href="https://gitlab.com/madaidan/secure-time-sync">Secure Time Synchronization</a>. It randomly selects a website out of a pool of carefully chosen websites, connects to it, extracts the current UTC time out of the http headers and sets that as the system time. It uses onion services where possible and if the website doesn't have an onion service, it uses TLS. This makes it encrypted, authenticated and anonymous without leaking the time. It's configured to go through it's own SocksPort for stream isolation and also has minimal attack surface. <br>
       <br>
-      The problem with this is that it is not in the Arch Linux repositories or AUR which makes it hard to reliably use within Obscurix and makes it hard to update it. <br>
+      More information can be found in the readme. <br>
       <br>
-      See <a href="https://www.whonix.org/wiki/Sdwdate">https://www.whonix.org/wiki/Sdwdate</a>.
+      Obscurix uses a systemd service (secure-time-sync.service) to run it at boot. <br>
+      <br>
+      The hardware clock is not affected by this as it would leave a trace on the hardware which is the exact opposite of what Obscurix is trying to do.
     </p>
-
   </body>
 </html>

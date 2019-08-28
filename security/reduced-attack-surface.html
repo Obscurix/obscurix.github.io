@@ -17,7 +17,7 @@
     <p>
       Uncommon network protocols are blacklisted as they may contain unknown vulnerabilities and many have had bad vulnerabilities in the past. These are blacklisted in /etc/modprobe.d. <br>
       <br>
-      cramfs, freevxfs, jffs2, hfs, hfsplus, squashfs and udf are filesystems that are also blacklisted as they are rarely used. <br>
+      cramfs, freevxfs, jffs2, hfs, hfsplus, squashfs and udf are filesystems that are blacklisted as they are rarely used. <br>
       <br>
       Bluetooth, firewire and thunderbolt are blacklisted. Bluetooth can be used to connect to your system and is thus dangerous. Thunderbolt and Firewire can be used for DMA attacks. <br>
       <br>
@@ -36,5 +36,12 @@
       At boot Obscurix blocks all wireless devices except WiFi with <span class="code">rfkill</span>. This will block things such as Bluetooth to reduce attack surface.
     </p>
 
+    <h2>Setuid and Capabilities</h2>
+
+    <p>
+      A setuid binary allows a binary to run with the same privileges as the binary's owner. Some binaries are owned by root and made setuid so an unprivileged user can perform some privileged processes. This adds a lot of attack surface as a vulnerability in that binary can lead to a privilege escalation. Because of this, Obscurix removes the setuid/setgid bit from many unneeded binaries. <br>
+      <br>
+      Capabilities split root up into different parts. Instead of giving a binary setuid, you can give it a capability so it can only perform a certain privileged operation instead of being able to perform anything. This still adds a lot of attack surface as a vulnerability in the binary can lead to partial root access. Brad Spengler also showed how many capabilities allow <a href="http://forums.grsecurity.net/viewtopic.php?f=7&t=2522&sid=c6fbcf62fd5d3472562540a7e608ce4e#p10271">trivial full privilege escalation</a>. Because of this, Obscurix removes capabilities from any unneeded binaries.
+    </p>
   </body>
 </html>

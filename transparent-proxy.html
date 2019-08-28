@@ -77,7 +77,7 @@
       <br>
       This is dangerous for obvious reasons. To fix this, we can disable the control port altogether, or we can add a control port filter proxy. Disabling the Tor control port will break a lot of functionality such as the "New Identity" button on the Tor Browser. A control port filter proxy filters out dangerous Tor control port commands and allows only the needed ones. For example, we can use the "New Identity" button without being able to use <span class="code">GETINFO address</span>. <br>
       <br>
-      Obscurix uses Whonix's <a href="https://github.com/Whonix/onion-grater">onion-grater</a> as a control port filter proxy. It's open source, written in a memory safe language, has an AppArmor profile, systemd sandboxing and is easy to use.
+      Obscurix uses Tails' <a href="https://git-tails.immerda.ch/tails/plain/config/chroot_local-includes/usr/local/lib/onion-grater">onion-grater</a> as a control port filter proxy. It's open source, written in a memory safe language and is easy to use.
     </p>
   </body>
 </html>

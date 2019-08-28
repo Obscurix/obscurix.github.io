@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../styles.css">
+    <title>Obscurix - hardened_malloc</title>
+  </head>
+  <body>
+    <h1>hardened_malloc</h1>
+
+    <p>
+      <a href="https://github.com/GrapheneOS/hardened_malloc">hardened_malloc</a> is a hardened memory allocator made by Daniel Micay that protects against many memory corruption vulnerabilities. According to the project's description:
+    </p>
+
+    <div class="code">
+      This is a security-focused general purpose memory allocator providing the malloc API along with various extensions. It provides substantial hardening against heap corruption vulnerabilities. The security-focused design also leads to much less metadata overhead and memory waste from fragmentation than a more traditional allocator design. It aims to provide decent overall performance with a focus on long-term performance and memory usage rather than allocator micro-benchmarks. It offers scalability via a configurable number of entirely independently arenas, with the internal locking within arenas further divided up per size class.
+     </div>
+
+     <p>
+       Obscurix uses this for many applications by default. It changes the LD_PRELOAD variable to point to /usr/lib/libhardened_malloc.so using bubblewrap's <span class="code">--setenv</span> flag or systemd's <span class="code">Environment</span> option. <br>
+       <br>
+       Obscurix doesn't use it as the system default memory allocator as many things can break with it such as Xorg. It can be added as the default by adding its file path to /etc/ld.so.preload or building it into libc directly. <br>
+       <br>
+       hardened_malloc is not used for the Tor Browser as it uses its own memory allocator, mozjemalloc and it can't be switched with a simple LD_PRELOAD change. It would require a recompilation of the Tor Browser with mozjemalloc disabled. Differences in memory allocators may also be detected remotely via javascript performance fingerprinting so this could negatively affect your web browser fingerprint if it did work.
+     </p>
+  </body>
+</html>

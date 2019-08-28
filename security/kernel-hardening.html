@@ -85,13 +85,17 @@
       <br>
       <span class="code">pti=on</span> is used to enable Kernel Page Table Isolation which prevents some KASLR bypasses and mitigates Meltdown. <br>
       <br>
-      <span class="code">mds=full,nosmt</span> is used to enable all mitigations for the MDS vulnerability and disable nosmt which can be used to exploit the MDS vulnerability.
+      <span class="code">mds=full,nosmt</span> is used to enable all mitigations for the MDS vulnerability and disable smt which can be used to exploit the MDS vulnerability. <br>
+      <br>
+      <span class="code">intel_iommu=on amd_iommu=on</span> are used which enables IOMMU to prevent DMA attacks. <br>
+      <br>
+      <span class="code">modules.sig_enforce=1</span> is used which only allows kernel modules signed with a valid key to be loaded. Any kernel module signed with an invalid key or not signed at all will not be loaded. This increases security by making it much harder to load a malicious kernel module.
     </p>
 
     <h2>Other</h2>
 
     <p>
-      /proc is mounted with hidepid=2 to prevent users from seeing eachother's processes.
+      /proc is mounted with <span class="code">hidepid=2</span> to prevent users from seeing eachother's processes. systemd-logind is exempted from this by making it run within the proc group. This is needed for user sessions to work correctly.
     </p>
   </body>
 </html>
