@@ -13,7 +13,11 @@
       <br>
       Once you have booted into Obscurix, it will ask you if you want to use a Tor bridge or not. If you select "No", you will connect directly to the Tor network. If you select "Yes", it will ask you for the bridge information which can be gotten from <a href="https://bridges.torproject.org">https://bridges.torproject.org</a>. Once you have entered the correct information, you will connect to Tor through a bridge. This hides Tor usage from your ISP and will help bypass Tor blocks. If you enter the wrong information, Tor will fail to start and you will have to reboot and enter the information in again. <br>
       <br>
+      After you have been prompted for bridges, it will ask if you want to change the keyboard layout. <br>
+      <br>
       Web browsing can be done via the Tor Browser which is specially configured to protect your privacy and anonymity. Downloads can only be stored in /home/user/tor-browser_en-US/Browser/Downloads due to the application confinement. <br>
+      <br>
+      It is recommended to use the <span class="code">scurl</span> or <span class="code">scurl-download</span> programs in a terminal for downloads. This a wrapper around <span class="code">curl</span> that prevents https downgrade attacks. Credit to Whonix for this <a href="https://github.com/Whonix/scurl">https://github.com/Whonix/scurl</a>. <br>
       <br>
       Hexchat is installed by default for IRC chats. It is configured for privacy and security as per <a href="https://trac.torproject.org/projects/tor/wiki/doc/TorifyHOWTO/XChat">https://trac.torproject.org/projects/tor/wiki/doc/TorifyHOWTO/XChat</a>. <br>
       <br>
@@ -25,7 +29,11 @@
       <br>
       Gedit is installed for editing files. You cannot edit files outside of your home directory due to the restrictions. <br>
       <br>
-      Eog is installed for image viewing. You cannot view images outside of your home directory.
+      Eog is installed for image viewing. You cannot view images outside of your home directory. <br>
+      <br>
+      Electrum is installed for cryptocurrencies. <br>
+      <br>
+      Keepassxc is installed for secure password management.
     </p>
 
     <h2>Boot Parameters</h2>
@@ -109,7 +117,7 @@
     <h3>nozeronet</h3>
 
     <p>
-      Specifying <span class="code">nozeronet</span> as a boot parameter with disable Zeronet. This can be useful if you don't use zeronet and want to disable it to free up system resources or reduce attack surface. 
+      Specifying <span class="code">nozeronet</span> as a boot parameter will disable Zeronet. This can be useful if you don't use zeronet and want to disable it to free up system resources or reduce attack surface.
     </p>
 
     <h2>Installing New Software</h2>

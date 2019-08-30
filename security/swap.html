@@ -11,8 +11,14 @@
     <p>
       Swap can be used to write parts of RAM to disk. This is disabled as it could write important information such as passwords, encryption keys etc. to disk. <br>
       <br>
-      It's disabled by setting <span class="code">vm.swappiness=0</span> in /etc/sysctl.d/swappiness.conf. <br>
-      <br>
+      It's disabled by setting <span class="code">vm.swappiness=0</span> in /etc/sysctl.d/swappiness.conf.
+    </p>
+
+    <ul>
+      <li><a href="https://github.com/Obscurix/Obscurix/blob/master/airootfs/etc/sysctl.d/swappiness.conf">https://github.com/Obscurix/Obscurix/blob/master/airootfs/etc/sysctl.d/swappiness.conf</a></li>
+    </ul>
+
+    <p>
       /usr/bin/swapon is also replaced with a dummy binary that just runs /bin/true to prevent something from mounting a swap partition on the hard drive.
     </p>
   </body>

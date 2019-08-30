@@ -20,11 +20,19 @@
       /etc/securetty tells the system where root is allowed to log into. This file is empty in Obscurix to prevent someone from logging in as root from a tty.
     </p>
 
+    <ul>
+      <li><a href="https://github.com/Obscurix/Obscurix/blob/master/airootfs/etc/securetty">https://github.com/Obscurix/Obscurix/blob/master/airootfs/etc/securetty</a></li>
+    </ul>
+
     <h2>Restricted Su</h2>
 
     <p>
       Su is a command which allows you to change user. By default, it tries to change to the root user. Obscurix restricts the usage of su to only users within the wheel group. This prevents malware from attempting to use su to gain root. The user is not within the wheel group.
     </p>
+
+    <ul>
+      <li><a href="https://github.com/Obscurix/Obscurix/blob/master/airootfs/etc/pam.d">https://github.com/Obscurix/Obscurix/blob/master/airootfs/etc/pam.d</a></li>
+    </ul>
 
     <h2>Locked Root Account</h2>
 

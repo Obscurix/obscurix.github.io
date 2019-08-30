@@ -10,9 +10,18 @@
 
     <p>
       Obscurix comes with a very restrictive firewall. It blocks all incoming and outgoing connections and only allows outgoing Tor, I2P or Freenet traffic. It is configured via iptables. This makes IP leaks impossible without a root exploit to disable the firewall. <br>
-      <br>
+    </p>
+
+    <ul>
+      <li><a href="https://github.com/Obscurix/Obscurix/blob/master/airootfs/etc/iptables/iptables.rules">https://github.com/Obscurix/Obscurix/blob/master/airootfs/etc/iptables/iptables.rules</a></li>
+    </ul>
+
+    <p>
       NetworkManager.service is configured to require iptables to be running. This acts as a fail closed mechanism/kill switch. If the firewall is not active then networking shuts off.
     </p>
 
+    <ul>
+      <li><a href="https://github.com/Obscurix/Obscurix/blob/master/airootfs/etc/systemd/system/NetworkManager.service.d/fail-closed.conf">https://github.com/Obscurix/Obscurix/blob/master/airootfs/etc/systemd/system/NetworkManager.service.d/fail-closed.conf</a></li>
+    </ul>
   </body>
 </html>

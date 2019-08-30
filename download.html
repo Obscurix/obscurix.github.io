@@ -9,7 +9,7 @@
     <h1>Downloading and Installing</h1>
 
     <p>
-      To install Obscurix, download the iso from (url). It is highly recommended to verify the iso to make sure it has not been tampered with.
+      To install Obscurix, download the iso from <a href="https://github.com/Obscurix/Obscurix/releases">https://github.com/Obscurix/Obscurix/releases</a>. It is highly recommended to verify the iso to make sure it has not been tampered with. If the iso was verified, it does not matter where it was downloaded from or what connection it was downloaded over as it is signed personally by me.
     </p>
 
     <h2>Verification</h2>
@@ -53,7 +53,7 @@
     </p>
 
     <div class="code">
-      gpg --verify obscurix.iso obscurix.asc
+      gpg --verify obscurix.asc obscurix.iso
     </div>
 
     <p>
@@ -74,10 +74,10 @@
       To install Obscurix you will need at least a 4GB USB stick. <br>
     </p>
 
-    <h3>Linux</h3>
+    <h3>Linux/BSD/MacOS</h3>
 
     <p>
-      To install it on Linux, plug in your USB and find the drive name. It will be something like /dev/sdb. <br>
+      To install it on Linux, BSD or MacOS plug in your USB and find the drive name. It will be something like /dev/sdb if on Linux, /dev/ada0 if on BSD and /dev/disk2 if on MacOS. <br>
       <br>
       Now run:
     </p>
@@ -91,18 +91,6 @@
     </p>
 
     <h3>Windows</h3>
-
-    <p>
-      Not documented yet.
-    </p>
-
-    <h3>MacOS</h3>
-
-    <p>
-      Not documented yet.
-    </p>
-
-    <h3>BSD</h3>
 
     <p>
       Not documented yet.
@@ -133,7 +121,7 @@
     </p>
 
     <div class="code">
-      git clone (url)
+      git clone https://github.com/Obscurix/Obscurix
     </div>
 
     <p>
