@@ -9,7 +9,7 @@
     <h1>Tor Transparent Proxy</h1>
 
     <p>
-      Obscurix uses a transparent proxy to force all connections through Tor and block anything it can't torify. This makes IP leaks impossible without a root exploit. I2P and Freenet traffic is allowed through the firewall. <br>
+      Obscurix uses a transparent proxy to force all connections except I2P/Freenet traffic through Tor and block anything it can't torify. This makes IP leaks impossible without a root exploit or compromise of Tor, I2P or Freenet. <br>
       <br>
       The firewall is configured with iptables and the rules are in /etc/iptables/iptables.rules. <br>
       <br>
