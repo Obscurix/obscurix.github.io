@@ -9,7 +9,7 @@
     <h1>Downloading and Installing</h1>
 
     <p>
-      To install Obscurix, download the iso from <a href="https://github.com/Obscurix/Obscurix/releases">https://github.com/Obscurix/Obscurix/releases</a>. It is highly recommended to verify the iso to make sure it has not been tampered with. If the iso was verified, it does not matter where it was downloaded from or what connection it was downloaded over as it is signed personally by me.
+      To install Obscurix, download the latest iso from <a href="https://github.com/Obscurix/Obscurix/releases/download/v0.2-alpha/Obscurix-0.2-x86_64.iso">here</a>. It is highly recommended to verify the iso to make sure it has not been tampered with. If the iso was verified, it does not matter where it was downloaded from or what connection it was downloaded over as it is signed personally by me.
     </p>
 
     <h2>Verification</h2>
@@ -19,15 +19,7 @@
     </p>
 
     <div class="code">
-      gpg --recv-keys (key)
-    </div>
-
-    <p>
-      It should say:
-    </p>
-
-    <div class="code">
-      (output)
+      curl https://github.com/Obscurix.gpg | gpg --import
     </div>
 
     <p>
@@ -35,34 +27,39 @@
     </p>
 
     <div class="code">
-      gpg --fingerprint (key)
+      gpg --fingerprint 3A0409379893F1A33FBFFFA8800EB910E7BA944F
     </div>
 
     <p>
       It should say:
     </p>
 
-    <div class="code">
-      (output)
-    </div>
+    <pre class="code">
+pub   rsa4096 2019-08-30 [SC] [expires: 2020-08-29]
+      3A04 0937 9893 F1A3 3FBF  FFA8 800E B910 E7BA 944F
+uid           [ultimate] Obscurix &lt;Obscurix@protonmail.ch&gt;
+sub   rsa4096 2019-08-30 [E] [expires: 2020-08-29]
+    </pre>
 
     <p>
-      Now download the signatue from here(url). <br>
+      Now download the signatue from <a href="https://github.com/Obscurix/Obscurix/releases/download/v0.2-alpha/Obscurix-0.2-x86_64.iso.asc">here</a>. <br>
       <br>
       Verify the iso by running:
     </p>
 
     <div class="code">
-      gpg --verify obscurix.asc obscurix.iso
+      gpg --verify Obscurix-0.2-x86_64.iso.asc Obscurix-0.2-x86_64.iso
     </div>
 
     <p>
       It should say:
     </p>
 
-    <div class="code">
-      (output)
-    </div>
+    <pre class="code">
+gpg: Signature made Thu 12 Sep 2019 22:00:57 UTC
+gpg:                using RSA key 3A0409379893F1A33FBFFFA8800EB910E7BA944F
+gpg: Good signature from "Obscurix &gt;Obscurix@protonmail.ch&lt;" [ultimate]
+    </pre>
 
     <p>
       If it says it is a valid signature then the iso you have downloaded has not been tampered with.
@@ -105,9 +102,9 @@
     <p>
       Users with high security needs may want to build the iso from source code. This allows them to manually audit the OS before installing. Only advanced users should do this as you can mess something up. <br>
       <br>
-      Building the iso requires you to be on an Arch Linux system (if it isn't your host, it can be done in a VM or live USB). <br>
+      Building the iso requires you to be on an Arch Linux system (if it isn't your host, it can be done in a VM or live USB). Building it on the linux-hardened kernel will not work due to an <a href="https://bugs.archlinux.org/task/63685">unfixed bug</a>. <br>
       <br>
-      Note: Building the iso needs to be done as root. <br>
+      Note: Building the iso needs to be done as root. If it isn't done as root, all files in the iso will be owned by an ordinary user rather than the root user which will break a lot of things. <br>
       <br>
       You will need to install <span class="code">git</span> and <span class="code">archiso</span> from the Arch repositories before building. To do this, run:
     </p>
@@ -132,8 +129,65 @@
       cd Obscurix
     </div>
 
+    <h3>Verifying the source code with GPG</h3>
+
     <p>
-       Now build the iso by running:
+      This part is optional but highly recommended. Obscurix uses signed commits so you can verify each commit with my GPG key to ensure they were created by me. <br>
+      <br>
+      Import the signing key by running:
+    </p>
+
+    <div class="code">
+      curl https://github.com/Obscurix.gpg | gpg --import
+    </div>
+
+    <p>
+      Verify the fingerprint by running:
+    </p>
+
+    <div class="code">
+      gpg --fingerprint 3A0409379893F1A33FBFFFA8800EB910E7BA944F
+    </div>
+
+    <p>
+      It should say:
+    </p>
+
+    <pre class="code">
+pub   rsa4096 2019-08-30 [SC] [expires: 2020-08-29]
+      3A04 0937 9893 F1A3 3FBF  FFA8 800E B910 E7BA 944F
+uid           [ultimate] Obscurix &lt;Obscurix@protonmail.ch&gt;
+sub   rsa4096 2019-08-30 [E] [expires: 2020-08-29]
+    </pre>
+
+    <p>
+      Now check the signature:
+    </p>
+
+    <div class="code">
+      git log --show-signature
+    </div>
+
+    <p>
+      It should say:
+    </p>
+
+    <pre class="code">
+gpg: Signature made
+gpg:                using RSA key 3A0409379893F1A33FBFFFA8800EB910E7BA944F
+gpg: Good signature from "Obscurix &lt;Obscurix@protonmail.ch&gt;" [ultimate]
+    </pre>
+
+    <p>
+      If it does not say that then the source code may be corrupted and you should seek help on <a href="https://github.com/Obscurix/Obscurix/issues">Github</a>. <br>
+      <br>
+      If it does say that, you can continue building the iso.
+    </p>
+
+    <h3>Building the iso</h3>
+
+    <p>
+       Build the iso by running:
     </p>
 
     <div class="code">
@@ -141,7 +195,9 @@
     </div>
 
     <p>
-      Depending on your system's resources, this can take a long time.
+      Depending on your system's resources, this can take a long time. <br>
+      <br>
+      Ommitting the <span class="code">-v</span> flag when building will cause the build script to be less verbose. This is unrecommended as it will hide many errors that would otherwise be useful for debugging if something goes wrong.
     </p>
   </body>
 </html>
