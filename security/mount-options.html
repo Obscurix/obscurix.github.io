@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../styles.css">
+    <title>Obscurix - Mount Options</title>
+  </head>
+  <body>
+    <h1>Mount Options</h1>
+
+    <p>
+      There are a few restrictive mount options that you can use to increase security. These are <span class="code">noexec</span>, <span class="code">nosuid</span> and <span class="code">nodev</span>. <span class="code">noexec</span> prevents executing anything, <span class="code">nodev</span> prevents interpreting devices and <span class="code">nosuid</span> disables SUID binaries. <br>
+      <br>
+      Obscurix uses these for some directories by default. If the directory isn't a mount point already, a bind mount is created. The following directories use restrictive mount options:
+
+      <ul>
+        <li>/var</li>
+        <li>/boot</li>
+        <li>/home</li>
+        <li>/dev/shm</li>
+        <li>/tmp</li>
+        <li>/proc</li>
+      </ul>
+
+      /home is not mounted with <span class="code">noexec</span> as it'd break many things.
+
+      <ul>
+        <li><a href="https://github.com/Obscurix/Obscurix/blob/master/airootfs/etc/fstab">https://github.com/Obscurix/Obscurix/blob/master/airootfs/etc/fstab</a></li>
+      </ul>
+    </p>
+  </body>
+</html>

@@ -93,7 +93,9 @@
       <br>
       <span class="code">intel_iommu=on amd_iommu=on</span> are used which enables IOMMU to prevent DMA attacks. <br>
       <br>
-      <span class="code">modules.sig_enforce=1</span> is used which only allows kernel modules signed with a valid key to be loaded. Any kernel module signed with an invalid key or not signed at all will not be loaded. This increases security by making it much harder to load a malicious kernel module.
+      <span class="code">modules.sig_enforce=1</span> is used which only allows kernel modules signed with a valid key to be loaded. Any kernel module signed with an invalid key or not signed at all will not be loaded. This increases security by making it much harder to load a malicious kernel module. <br>
+      <br>
+      <span class="code">oops=panic</span> is used which makes the kernel panic on oopses. This prevents the kernel from continuing to run a flawed process which can be exploited. Kernel exploits sometimes also cause an oops which this will help against. Sometimes, buggy drivers cause harmless oopses which will result in your system crashing so this boot parameter can only be used on certain hardware.
     </p>
 
     <ul>

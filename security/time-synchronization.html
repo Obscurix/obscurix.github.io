@@ -25,7 +25,7 @@
     <h2>Implementation</h2>
 
     <p>
-      Obscurix uses a tool I developed called <a href="https://gitlab.com/madaidan/secure-time-sync">Secure Time Synchronization</a>. It randomly selects a website out of a pool of carefully chosen websites, connects to it, extracts the current UTC time out of the http headers and sets that as the system time. It uses onion services where possible and if the website doesn't have an onion service, it uses TLS. This makes it encrypted, authenticated and anonymous without leaking the time. It's configured to go through it's own SocksPort for stream isolation and also has minimal attack surface. <br>
+      Obscurix uses a tool I developed called <a href="https://gitlab.com/madaidan/secure-time-sync">Secure Time Synchronization</a>. It randomly selects a website out of a pool of carefully chosen websites, connects to it, extracts the current UTC time out of the http headers and sets that as the system time. It uses onion services where possible and if the website doesn't have an onion service, it uses TLS. This makes it encrypted, authenticated and anonymous without leaking the time. It's configured to go through its own SocksPort for stream isolation and also has minimal attack surface. <br>
       <br>
       More information can be found in the readme. <br>
       <br>
