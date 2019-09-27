@@ -17,33 +17,25 @@
     <p>
       Hexchat (an IRC client) is configured for stream isolation, gets rid of protocol leaks via DCC, identd flags, and CTCP, uses generic status messages, uses a generic username, uses a generic nick completion suffix and disables autostart. <br>
       <br>
-      See <a href="https://trac.torproject.org/projects/tor/wiki/doc/TorifyHOWTO/XChat">https://trac.torproject.org/projects/tor/wiki/doc/TorifyHOWTO/XChat</a> for more information. <br>
-      <br>
-      Hexchat is restricted with a bubblewrap sandbox and AppArmor profile.
+      See <a href="https://trac.torproject.org/projects/tor/wiki/doc/TorifyHOWTO/XChat">https://trac.torproject.org/projects/tor/wiki/doc/TorifyHOWTO/XChat</a> for more information.
     </p>
 
     <h2>VLC</h2>
 
     <p>
       VLC's metadata collection is disabled by default and no confirmation message appears. <br>
-      <br>
-      VLC is restricted with a bubblewrap sandbox.
     </p>
 
     <h2>Thunderbird</h2>
 
     <p>
-      Thunderbird uses a user.js that disables many unneeded features (javascript, SVG etc.) to reduce attack surface, disables telemetry and Google Safebrowsing, enables some privacy enhancing settings like privacy.resistFingerprinting and is configured for stream isolation. <br>
-      <br>
-      Thunderbird is restricted with an AppArmor profile.
+      Thunderbird uses a user.js that disables many unneeded features (javascript, chat, SVG etc.) to reduce attack surface, disables telemetry and Google Safebrowsing, enables some privacy enhancing settings like fingerprinting protection and is configured for stream isolation. The "enigmail" addon is installed by default for encrypted email. The "torbirdy" addon may be installed in the future but currently it doesn't support <a href="https://trac.torproject.org/projects/tor/ticket/31773">newer thunderbird versions</a>. <br>
     </p>
 
     <h2>Evince</h2>
 
     <p>
       evince-previewer and evince-thumbnailer are disabled to reduce potential attack surface. It does this by commenting "Exec=" in /usr/share/thumbnailers/evince.thumbnailer, setting both of the binaries permissions to 000 and configuring an AppArmor profile that doesn't allow them access to any file. <br>
-      <br>
-      Evince is restricted with a bubblewrap sandbox and AppArmor profile.
     </p>
 
     <h2>Thunar</h2>
@@ -62,6 +54,12 @@
 
     <p>
       NetworkManager does a connectivity check by default using HTTP. This is disabled in Obscurix as the HTTP connection can be MITMed.
+    </p>
+
+    <h2>GnuPG</h2>
+
+    <p>
+      Obscurix uses Jacob Applebaum's <a href="https://github.com/ioerror/duraconf/blob/master/configs/gnupg/gpg.conf">hardened GPG configuration</a>.
     </p>
   </body>
 </html>

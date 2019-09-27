@@ -46,14 +46,6 @@
       Obscurix has a few custom boot parameters that can be used to configure certain things. They are documented below.
     </p>
 
-    <h3>notor</h3>
-
-    <p>
-      Specifying the <span class="code">notor</span> boot parameter will disable the Tor process and firewall. Do not do this unless you know exactly what you are doing as this parameter will greatly decrease anonymity. This should only be used for debugging purposes. <br>
-      <br>
-      Networking may also be messed up with this parameter as it doesn't do anything other than disable Tor. You will need to re-configure networking manually.
-    </p>
-
     <h3>nonet</h3>
 
     <p>
@@ -102,22 +94,18 @@
       Specifying <span class="code">nomacspoof</span> as a boot parameter will disable MAC address spoofing. This can be useful if the network you are connecting to only allows connections from certain MAC addresses.
     </p>
 
-    <h3>ipfs</h3>
+    <h3>ipfs/cjdns</h3>
 
     <p>
-      Specifying <span class="code">ipfs</span> as a boot parameter will enable ipfs. See <a href="anonymity-networks.html">Non-Anonymous Networks</a> for more details.
+      Specifying <span class="code">ipfs</span> or <span class="code">cjdns</span> as boot parameters will enable IPFS or cjdns. See <a href="anonymity-networks.html">Non-Anonymous Networks</a> for more details.
     </p>
 
-    <h3>cjdns</h3>
+    <h3>nozeronet/noi2p/nofreenet/notor</h3>
 
     <p>
-      Specifying <span class="code">cjdns</span> as a boot parameter will enable cjdns. See <a href="anonymity-networks.html">Non-Anonymous Networks</a> for more details.
-    </p>
-
-    <h3>nozeronet</h3>
-
-    <p>
-      Specifying <span class="code">nozeronet</span> as a boot parameter will disable Zeronet. This can be useful if you don't use zeronet and want to disable it to free up system resources or reduce attack surface.
+      Specifying <span class="code">nozeronet</span>, <span class="code">noi2p</span>, <span class="code">nofreenet</span> or <span class="code">notor</span> as boot parameters will disable Zeronet, I2P, Freenet or Tor. This can be useful if you don't use them and want to disable them to free up system resources or reduce attack surface. <br>
+      <br>
+      Disabling Tor will mess up networking.
     </p>
 
     <h3>cow_spacesize</h3>
