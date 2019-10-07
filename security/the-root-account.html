@@ -31,7 +31,7 @@
     </p>
 
     <ul>
-      <li><a href="https://github.com/Obscurix/Obscurix/blob/master/airootfs/etc/pam.d">https://github.com/Obscurix/Obscurix/blob/master/airootfs/etc/pam.d</a></li>
+      <li><a href="https://github.com/Obscurix/Obscurix/blob/master/airootfs/etc/pam.d/su">https://github.com/Obscurix/Obscurix/blob/master/airootfs/etc/pam.d/su</a></li>
     </ul>
 
     <h2>Locked Root Account</h2>
@@ -39,5 +39,15 @@
     <p>
       The root account is locked with <span class="code">passwd -l root</span>. This makes it impossible to login to the root account.
     </p>
+
+    <h2>pam_faildelay</h2>
+
+    <p>
+      The <a href="https://linux.die.net/man/8/pam_faildelay">pam_faildelay</a> PAM module is enabled and configured to have a delay of 5 seconds between failed login attempts. This is useful to stall password bruteforcing attempts when using the <span class="code">rootpw</span> boot parameter.
+    </p>
+
+    <ul>
+      <li><a href="https://github.com/Obscurix/Obscurix/blob/master/airootfs/etc/pam.d/system-login">https://github.com/Obscurix/Obscurix/blob/master/airootfs/etc/pam.d/system-login</a></li>
+    </ul>
   </body>
 </html>

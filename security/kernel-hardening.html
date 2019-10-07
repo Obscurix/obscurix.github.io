@@ -9,7 +9,7 @@
     <h1>Kernel Hardening</h1>
 
     <p>
-      This page documents all of the things done to harden the kernel. Obscurix uses the default linux kernel from the Arch Linux repositories. In the future it may use linux-hardened or a custom kernel for enhanced security.
+      This page documents all of the things done to harden the kernel. Obscurix uses the linux-hardened kernel and a few custom settings to enhance security.
     </p>
 
     <h2>Sysctl Changes</h2>
@@ -63,7 +63,9 @@
       <br>
       <span class="code">kernel.sysrq=0</span> is set which disables the SysRq key. The SysRq key can be used to run arbitrary commands that would normally require root so it is best to disable it. <br>
       <br>
-      <span class="code">kernel.unprivileged_userns_clone=0</span> is set which disables unprivileged user namespaces. User namespaces add a lot of attack surface for privilege escalation so they are disabled for unprivileged users. Because of this, bubblewrap has to be made setuid.
+      <span class="code">kernel.unprivileged_userns_clone=0</span> is set which disables unprivileged user namespaces. User namespaces add a lot of attack surface for privilege escalation so they are disabled for unprivileged users. Because of this, bubblewrap has to be made setuid. <br>
+      <br>
+      <span class="code">kernel.deny_new_usb=1</span> is set which blocks all newly connected USB devices. This prevents any USB based attacks.
     </p>
 
     <ul>
