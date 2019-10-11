@@ -21,7 +21,9 @@
     <h2>Bubblewrap</h2>
 
     <p>
-      Bubblewrap is a sandboxing program that uses Linux namespaces, seccomp and Linux capabilities to isolate applications. Obscurix uses this for many applications such as the Tor Browser and Hexchat. <br>
+      Bubblewrap is a sandboxing program that uses Linux namespaces, seccomp and Linux capabilities to isolate applications. Obscurix uses this for many applications such as the Tor Browser. <br>
+      <br>
+      Xpra is used to used to sandbox X11. Applications create their own Xpra server in their own sandbox and connect to it with their own Xpra client outside of the sandbox. This prevents the applications from accessing any other X windows. Xpra is also restricted with AppArmor. <br>
       <br>
       Firejail is not used as it adds a lot of attack surface for privilege escalation, has had trivial privilege escalation vulnerabilities in the past and it may even worsen security.
     </p>
