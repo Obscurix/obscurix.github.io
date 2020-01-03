@@ -9,7 +9,7 @@
     <h1>Downloading and Installing</h1>
 
     <p>
-      To install Obscurix, download the latest iso from <a href="https://github.com/Obscurix/Obscurix/releases/download/v0.3-alpha/Obscurix-0.3-x86_64.iso">here</a>. It is highly recommended to verify the iso to make sure it has not been tampered with. If the iso was verified, it does not matter where it was downloaded from or what connection it was downloaded over as it is signed personally by me.
+      To install Obscurix, download the latest iso from <a href="https://github.com/Obscurix/Obscurix/releases/download/v0.3.1-alpha/Obscurix-0.3.1-x86_64.iso">here</a>. It is highly recommended to verify the iso to make sure it has not been tampered with. If the iso was verified, it does not matter where it was downloaded from or what connection it was downloaded over as it is signed personally by me.
     </p>
 
     <h2>Verification</h2>
@@ -42,7 +42,7 @@ sub   rsa4096 2019-08-30 [E] [expires: 2020-08-29]
     </pre>
 
     <p>
-      Now download the signature from <a href="https://github.com/Obscurix/Obscurix/releases/download/v0.3-alpha/Obscurix-0.3-x86_64.iso.asc">here</a>. <br>
+      Now download the signature from <a href="https://github.com/Obscurix/Obscurix/releases/download/v0.3.1-alpha/Obscurix-0.3.1-x86_64.iso.asc">here</a>. <br>
       <br>
       Verify the iso by running:
     </p>
@@ -102,7 +102,7 @@ gpg: Good signature from "Obscurix &gt;Obscurix@protonmail.ch&lt;" [ultimate]
     <p>
       Users with high security needs may want to build the iso from source code. This allows them to manually audit the OS before installing. Only advanced users should do this as you can mess something up. <br>
       <br>
-      Building the iso requires you to be on an Arch Linux system (if it isn't your host, it can be done in a VM or live USB). Building it on the linux-hardened kernel will not work due to an <a href="https://bugs.archlinux.org/task/63685">unfixed bug</a>. <br>
+      Building the iso requires you to be on an Arch Linux system (if it isn't your host, it can be done in a VM or live USB). Building it on the linux-hardened kernel may not work due to an <a href="https://bugs.archlinux.org/task/63685">unfixed bug</a>. <br>
       <br>
       Note: Building the iso needs to be done as root. If it isn't done as root, all files in the iso will be owned by an ordinary user rather than the root user which will break a lot of things. <br>
       <br>
