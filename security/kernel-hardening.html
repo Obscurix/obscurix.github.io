@@ -81,11 +81,9 @@
       <br>
       <span class="code">slab_nomerge</span> is used which disables merging of slabs of similar sizes as they can sometimes be used in a vulnerable way and be exploited. <br>
       <br>
-      <span class="code">slub_debug=FZP</span> is used which enables redzoning, sanity checks and memory poisoning. Redzoning can help to prevent slabs from being overwritten past its size. Poisoning overwrites freed memory to prevent some use-after-free vulnerabilities. <br>
+      <span class="code">slub_debug=FZ</span> is used which enables redzoning and sanity checks. Redzoning can help to prevent slabs from being overwritten past its size. <br>
       <br>
       <span class="code">mce=0</span> is used which causes the kernel to panic on uncorrectable errors in ECC memory that could be exploited. <br>
-      <br>
-      <span class="code">page_poison=1</span> is used which overwrites freed memory. <br>
       <br>
       <span class="code">ipv6.disable=1</span> is used to disable the IPv6 stack which has some privacy issues, is not yet fully supported in Tor and adds extra attack surface. <br>
       <br>
