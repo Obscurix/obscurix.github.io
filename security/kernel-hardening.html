@@ -91,6 +91,10 @@
       <br>
       <span class="code">mds=full,nosmt</span> is used to enable all mitigations for the MDS vulnerability and disable smt which can be used to exploit the MDS vulnerability. <br>
       <br>
+      <span class="code">init_on_free=1 init_on_alloc=1</span> are used to initalize new memory pages with zeroes and to overwrite freed memory pages with zeroes. <br>
+      <br>
+      <span class="code">lockdown=confidentiality</span> is used to enable kernel lockdown which locks down many ways userspace can escalate to kernel mode. <br>
+      <br>
       <span class="code">intel_iommu=on amd_iommu=on</span> are used which enables IOMMU to prevent DMA attacks. <br>
       <br>
       <span class="code">modules.sig_enforce=1</span> is used which only allows kernel modules signed with a valid key to be loaded. Any kernel module signed with an invalid key or not signed at all will not be loaded. This increases security by making it much harder to load a malicious kernel module. <br>
