@@ -3,6 +3,8 @@ body {
     font-size: 18px;
     font-family: 'Nobile', Helvetica, Arial, sans-serif;
     margin: 100px;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
 }
 
 .code {
